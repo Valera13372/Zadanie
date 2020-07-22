@@ -22,6 +22,8 @@ public class Tester {
                     int a = 0;
                     int b = 0;
                     int c = 0;
+                    String regnewusers;
+                    FileWriter WriteNewKlient = new FileWriter("D:\\login and password.txt");
                     FileReader KlientReader = new FileReader("D:\\login and password.txt");
                     FileReader AdminReader = new FileReader("D:\\Admins login and password.txt");
                     Scanner scanKlient = new Scanner(KlientReader);
@@ -33,18 +35,30 @@ public class Tester {
 
                     String entert = dis.readUTF();
                     System.out.println("Прочитал " + entert);
-                    if (entert.equals(entert) == vhodrAdmin.equals(vhodrAdmin)) {
-                        dos.writeUTF("trueAdmin");
-                        dos.flush();
-                    }
 
-                    if (entert.equals(entert) == vhodrKlient.equals(vhodrKlient)) {
+                    while (entert.equals(entert) != vhodrAdmin.equals(vhodrAdmin) && entert.equals(entert) != vhodrKlient.equals(vhodrKlient))
+                        dos.writeUTF("false");
+                    dos.flush();
+
+                    while (entert.equals(entert) == vhodrKlient.equals(vhodrKlient)) {
                         dos.writeUTF("trueKlient");
                         dos.flush();
                     }
-                    if (entert.equals(entert) != vhodrAdmin.equals(vhodrAdmin) && entert.equals(entert) != vhodrKlient.equals(vhodrKlient))
-                        dos.writeUTF("false");
-                    dos.flush();
+                    while (entert.equals(entert) == vhodrAdmin.equals(vhodrAdmin)) {
+                        dos.writeUTF("trueAdmin");
+                        dos.flush();
+                    }
+                    dis.readUTF();
+                    while (dis.readUTF()=="new user " ) {
+                        dos.writeUTF("true reg");
+                        dos.flush();
+                        regnewusers=dis.readUTF();
+                        WriteNewKlient.write(regnewusers);
+                        dos.writeUTF("trueregistration");
+                        dos.flush();
+                    }
+
+
 
                     String que1 = dis.readUTF();
                     if (que1.equals("a + 1")) {
